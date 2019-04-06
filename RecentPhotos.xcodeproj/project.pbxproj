@@ -14,6 +14,7 @@
 		7CF392402258FB23009E143C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CF3923E2258FB23009E143C /* LaunchScreen.storyboard */; };
 		7CF3924B2258FB23009E143C /* RecentPhotosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF3924A2258FB23009E143C /* RecentPhotosTests.swift */; };
 		7CF392562258FB23009E143C /* RecentPhotosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF392552258FB23009E143C /* RecentPhotosUITests.swift */; };
+		7CF39264225901D9009E143C /* FlickerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF39263225901D9009E143C /* FlickerSettings.swift */; };
 		E6F0EC5C798221F3B933B025 /* Pods_RecentPhotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95ABD64AAF7F3A1FE63B475 /* Pods_RecentPhotos.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		7CF392512258FB23009E143C /* RecentPhotosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecentPhotosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF392552258FB23009E143C /* RecentPhotosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPhotosUITests.swift; sourceTree = "<group>"; };
 		7CF392572258FB23009E143C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CF39263225901D9009E143C /* FlickerSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickerSettings.swift; sourceTree = "<group>"; };
 		C95ABD64AAF7F3A1FE63B475 /* Pods_RecentPhotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecentPhotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -123,6 +125,7 @@
 			children = (
 				7CF392352258FB22009E143C /* AppDelegate.swift */,
 				7CF392372258FB22009E143C /* RecentPhotosViewController.swift */,
+				7CF39263225901D9009E143C /* FlickerSettings.swift */,
 				7CF392392258FB22009E143C /* Main.storyboard */,
 				7CF3923C2258FB23009E143C /* Assets.xcassets */,
 				7CF3923E2258FB23009E143C /* LaunchScreen.storyboard */,
@@ -336,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CF392382258FB22009E143C /* RecentPhotosViewController.swift in Sources */,
+				7CF39264225901D9009E143C /* FlickerSettings.swift in Sources */,
 				7CF392362258FB22009E143C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
