@@ -1,0 +1,46 @@
+//
+//  RecentPhotosViewModel.swift
+//  RecentPhotos
+//
+//  Created by Ulaş Sancak on 8.04.2019.
+//  Copyright © 2019 Ulaş Sancak. All rights reserved.
+//
+
+import Foundation
+import RxSwift
+
+class RecentPhotosViewModel {
+    
+    var disposable: Disposable?
+    
+    private(set) var currentPage = 0
+    
+    private(set) var totalPageCount: Int?
+    
+    let photoList = Variable<[FlickrPhoto]>([FlickrPhoto]())
+
+    let requestStartedSubject = PublishSubject<Void>()
+    
+    let errorReceivedSubject = PublishSubject<String>()
+    
+    let requestCompletedSubject = PublishSubject<Void>()
+    
+    func getRecentPhotos() {
+        let request = FlickrRecentPhotosRequest()
+        let params = FlickrRecentPhotosRequestParams()
+        params.page = self.currentPage + 1
+        self.requestStartedSubject.onNext(())
+        self.disposable = request.start().subscribe(onNext: { (response) in
+            self.photoList.value = response.photos?.photoList ?? [FlickrPhoto]()
+            self.currentPage = response.photos?.page ?? 0
+            self.totalPageCount = response.photos?.pages
+        }, onError: { (error) in
+            self.errorReceivedSubject.onNext(error.localizedDescription)
+            self.disposable?.dispose()
+        }, onCompleted: {
+            self.requestCompletedSubject.onNext(())
+            self.disposable?.dispose()
+        })
+    }
+    
+}

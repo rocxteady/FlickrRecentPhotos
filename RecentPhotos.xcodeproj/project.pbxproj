@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C32395B225B404C00841D93 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C32395A225B404C00841D93 /* PhotoCell.swift */; };
+		7C32395D225B42AD00841D93 /* RecentPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C32395C225B42AD00841D93 /* RecentPhotosViewModel.swift */; };
+		7C32395F225B599A00841D93 /* FlickrRecentPhotosRequestParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C32395E225B599A00841D93 /* FlickrRecentPhotosRequestParams.swift */; };
 		7CF392362258FB22009E143C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF392352258FB22009E143C /* AppDelegate.swift */; };
 		7CF392382258FB22009E143C /* RecentPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF392372258FB22009E143C /* RecentPhotosViewController.swift */; };
 		7CF3923B2258FB22009E143C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CF392392258FB22009E143C /* Main.storyboard */; };
@@ -51,6 +54,9 @@
 /* Begin PBXFileReference section */
 		2D7F2E47E9A8977C47214501 /* Pods-RecentPhotos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecentPhotos.debug.xcconfig"; path = "Target Support Files/Pods-RecentPhotos/Pods-RecentPhotos.debug.xcconfig"; sourceTree = "<group>"; };
 		49A1A9CFE6F0BABA6D40E5AC /* Pods-RecentPhotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecentPhotos.release.xcconfig"; path = "Target Support Files/Pods-RecentPhotos/Pods-RecentPhotos.release.xcconfig"; sourceTree = "<group>"; };
+		7C32395A225B404C00841D93 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		7C32395C225B42AD00841D93 /* RecentPhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPhotosViewModel.swift; sourceTree = "<group>"; };
+		7C32395E225B599A00841D93 /* FlickrRecentPhotosRequestParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrRecentPhotosRequestParams.swift; sourceTree = "<group>"; };
 		7CF392322258FB22009E143C /* RecentPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecentPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF392352258FB22009E143C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CF392372258FB22009E143C /* RecentPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPhotosViewController.swift; sourceTree = "<group>"; };
@@ -165,7 +171,9 @@
 				7CF3926A2259052C009E143C /* General */,
 				7CF39265225903A5009E143C /* FLickrAPI */,
 				7CF392352258FB22009E143C /* AppDelegate.swift */,
+				7C32395C225B42AD00841D93 /* RecentPhotosViewModel.swift */,
 				7CF392372258FB22009E143C /* RecentPhotosViewController.swift */,
+				7C32395A225B404C00841D93 /* PhotoCell.swift */,
 				7CF392392258FB22009E143C /* Main.storyboard */,
 				7CF3923C2258FB23009E143C /* Assets.xcassets */,
 				7CF3923E2258FB23009E143C /* LaunchScreen.storyboard */,
@@ -199,6 +207,7 @@
 				7CF39268225904A9009E143C /* FlickrConfigs.swift */,
 				7CF392712259060A009E143C /* FlickrAPIMethod.swift */,
 				7CF392732259070C009E143C /* FlickrBaseParams.swift */,
+				7C32395E225B599A00841D93 /* FlickrRecentPhotosRequestParams.swift */,
 				7CF3927522590982009E143C /* FlickrRecentPhotosRequest.swift */,
 				7C323959225B1E1200841D93 /* Models */,
 			);
@@ -403,9 +412,12 @@
 			files = (
 				7CF392382258FB22009E143C /* RecentPhotosViewController.swift in Sources */,
 				7CF39264225901D9009E143C /* FlickerSettings.swift in Sources */,
+				7C32395D225B42AD00841D93 /* RecentPhotosViewModel.swift in Sources */,
 				7CF39269225904A9009E143C /* FlickrConfigs.swift in Sources */,
 				7CF392362258FB22009E143C /* AppDelegate.swift in Sources */,
 				7CF3927A22590E26009E143C /* FlickrPage.swift in Sources */,
+				7C32395F225B599A00841D93 /* FlickrRecentPhotosRequestParams.swift in Sources */,
+				7C32395B225B404C00841D93 /* PhotoCell.swift in Sources */,
 				7CF3927822590A5E009E143C /* FlickrBaseResponse.swift in Sources */,
 				7CF3927622590982009E143C /* FlickrRecentPhotosRequest.swift in Sources */,
 				7CF39267225903BC009E143C /* FlickrNetworkRequest.swift in Sources */,
