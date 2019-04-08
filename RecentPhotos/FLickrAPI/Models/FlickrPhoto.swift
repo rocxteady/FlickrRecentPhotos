@@ -23,7 +23,6 @@ class FlickrPhoto: Decodable {
     var dateUpload: String?
     var lastUpdate: String?
     var dateTaken: String?
-    var dateTakenGranularity: String?
     var dateTakenUnknown: String?
     var ownername: String?
     var iconServer: String?
@@ -85,7 +84,6 @@ class FlickrPhoto: Decodable {
         case dateUpload = "dateupload"
         case lastUpdate = "lastupdate"
         case dateTaken = "datetaken"
-        case dateTakenGranularity = "datetakengranularity"
         case dateTakenUnknown = "datetakenunknown"
         case ownername = "ownername"
         case iconServer = "iconserver"

@@ -12,11 +12,12 @@ class FlickrRecentPhotosRequestParams: FlickrBaseParams {
     
     var page = 0
     
-    var extras = "url_o,height_o,width_o,url_z,height_z,width_z"
+    var extras = "views,date_taken,owner_name,url_o,height_o,width_o,url_s,height_s,width_s"
     
     private enum CodingKeys: String, CodingKey {
         
         case page = "page"
+        case extras = "extras"
         
     }
     
@@ -24,6 +25,7 @@ class FlickrRecentPhotosRequestParams: FlickrBaseParams {
         
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(page, forKey: CodingKeys.page)
+        try container.encodeIfPresent(extras, forKey: CodingKeys.extras)
         try super.encode(to: encoder)
         
     }

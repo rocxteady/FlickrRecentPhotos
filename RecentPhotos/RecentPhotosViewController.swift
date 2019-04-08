@@ -21,7 +21,7 @@ class RecentPhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.tableView.estimatedRowHeight = 134.0
+        self.tableView.estimatedRowHeight = 135.0
         self.tableView.rowHeight = UITableView.automaticDimension
         setupRx()
         getRecentPhotos()

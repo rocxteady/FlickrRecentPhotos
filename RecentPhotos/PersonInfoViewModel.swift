@@ -21,6 +21,9 @@ class PersonInfoViewModel {
             if let person = self.person, let imageURLString = person.photoURL {
                 getImage(imageURLString: imageURLString)
             }
+            else{
+                self.image.value = UIImage(named: "profile")!
+            }
         }
     }
     
@@ -67,6 +70,7 @@ class PersonInfoViewModel {
             .subscribe(onNext: { [weak self] (image) in
                 self?.image.value = image
             }, onError: { [weak self] (error) in
+            self?.image.value = UIImage(named: "profile")!
                 self?.errorReceivedSubject.onNext(error.localizedDescription)
                 self?.imageDisposable?.dispose()
             }, onCompleted: { [weak self] in
@@ -80,6 +84,8 @@ class PersonInfoViewModel {
             .subscribe(onNext: { [weak self] (image) in
                 self?.image.value = image
             }, onError: { [weak self] (error) in
+
+                self?.image.value = UIImage(named: "profile")!
                 self?.errorReceivedSubject.onNext(error.localizedDescription)
                 self?.imageDisposable?.dispose()
             }, onCompleted: { [weak self] in

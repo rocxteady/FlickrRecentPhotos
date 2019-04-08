@@ -22,11 +22,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoCell" rowHeight="134" id="JFq-Rq-ebh" customClass="PhotoCell" customModule="RecentPhotos" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="134"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoCell" rowHeight="219" id="JFq-Rq-ebh" customClass="PhotoCell" customModule="RecentPhotos" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="219"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JFq-Rq-ebh" id="GFt-Xe-Pup">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="133.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="218.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Owner Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mjb-D6-Htt">
@@ -35,7 +35,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EOw-3t-qUk">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="EOw-3t-qUk">
                                                     <rect key="frame" x="20" y="11" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="rLi-OV-7Ib"/>
@@ -55,20 +55,21 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pzx-tL-i1c">
-                                                    <rect key="frame" x="20" y="98" width="374" height="0.0"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="Pzx-tL-i1c">
+                                                    <rect key="frame" x="164.5" y="98" width="85" height="85"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" priority="250" id="g1H-bB-9KS"/>
+                                                        <constraint firstAttribute="height" priority="999" constant="85" id="CFz-qn-HAY"/>
+                                                        <constraint firstAttribute="width" priority="999" constant="85" id="fUc-lI-SnW"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Views" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfh-5h-TC6">
-                                                    <rect key="frame" x="20" y="106" width="38.5" height="17"/>
+                                                    <rect key="frame" x="20" y="191" width="38.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zss-ap-Iut">
-                                                    <rect key="frame" x="363.5" y="106" width="30.5" height="17"/>
+                                                    <rect key="frame" x="363.5" y="191" width="30.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -79,17 +80,16 @@
                                                 <constraint firstItem="HiS-yo-tji" firstAttribute="leading" secondItem="GFt-Xe-Pup" secondAttribute="leadingMargin" id="0t5-0C-WI3"/>
                                                 <constraint firstItem="Mjb-D6-Htt" firstAttribute="bottom" secondItem="EOw-3t-qUk" secondAttribute="bottom" id="3XU-r0-dq5"/>
                                                 <constraint firstItem="Zfh-5h-TC6" firstAttribute="leading" secondItem="GFt-Xe-Pup" secondAttribute="leadingMargin" id="4RU-Nt-IwI"/>
+                                                <constraint firstItem="Pzx-tL-i1c" firstAttribute="centerX" secondItem="GFt-Xe-Pup" secondAttribute="centerX" id="4h8-cG-5d3"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Zfh-5h-TC6" secondAttribute="bottom" id="8kt-5U-cUK"/>
                                                 <constraint firstItem="EOw-3t-qUk" firstAttribute="leading" secondItem="GFt-Xe-Pup" secondAttribute="leadingMargin" id="EDf-Lc-eBg"/>
                                                 <constraint firstItem="QFq-BP-vhr" firstAttribute="top" secondItem="Mjb-D6-Htt" secondAttribute="bottom" constant="4" id="Iky-7a-RMP"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="QFq-BP-vhr" secondAttribute="trailing" id="KWR-AT-csG"/>
                                                 <constraint firstItem="HiS-yo-tji" firstAttribute="top" secondItem="QFq-BP-vhr" secondAttribute="bottom" constant="3" id="MgB-ck-3ys"/>
                                                 <constraint firstItem="zss-ap-Iut" firstAttribute="top" secondItem="Pzx-tL-i1c" secondAttribute="bottom" constant="8" id="Mql-tI-iys"/>
-                                                <constraint firstItem="Pzx-tL-i1c" firstAttribute="leading" secondItem="GFt-Xe-Pup" secondAttribute="leadingMargin" id="PrG-Jx-ZdI"/>
                                                 <constraint firstItem="Pzx-tL-i1c" firstAttribute="top" secondItem="HiS-yo-tji" secondAttribute="bottom" constant="8" id="apq-Hq-QAC"/>
                                                 <constraint firstItem="EOw-3t-qUk" firstAttribute="top" secondItem="GFt-Xe-Pup" secondAttribute="topMargin" id="cVp-IH-kgc"/>
                                                 <constraint firstItem="Mjb-D6-Htt" firstAttribute="leading" secondItem="EOw-3t-qUk" secondAttribute="trailing" constant="8" id="crf-QS-eey"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Pzx-tL-i1c" secondAttribute="trailing" id="edI-eT-CAq"/>
                                                 <constraint firstItem="Mjb-D6-Htt" firstAttribute="top" secondItem="GFt-Xe-Pup" secondAttribute="topMargin" id="fia-b0-qzn"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="zss-ap-Iut" secondAttribute="bottom" id="k1u-Rz-72F"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Mjb-D6-Htt" secondAttribute="trailing" id="t9J-lm-6Qa"/>
@@ -102,6 +102,8 @@
                                             <outlet property="ownerNameLabel" destination="Mjb-D6-Htt" id="Jbl-oP-WVk"/>
                                             <outlet property="ownerPhotoImageView" destination="EOw-3t-qUk" id="q4Q-qq-8BA"/>
                                             <outlet property="photoImageView" destination="Pzx-tL-i1c" id="sgS-Sd-6eC"/>
+                                            <outlet property="photoImageViewHeightConstraint" destination="CFz-qn-HAY" id="0Co-pd-7zO"/>
+                                            <outlet property="photoImageViewWidthConstraint" destination="fUc-lI-SnW" id="6QR-dC-eiq"/>
                                             <outlet property="photoTitleLabel" destination="HiS-yo-tji" id="oFG-Nr-trc"/>
                                             <outlet property="viewCountLabel" destination="Zfh-5h-TC6" id="WGK-mE-uzu"/>
                                         </connections>
@@ -127,4 +129,8 @@
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="image" width="85" height="85"/>
+        <image name="profile" width="85" height="85"/>
+    </resources>
 </document>

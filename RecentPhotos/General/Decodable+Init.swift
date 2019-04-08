@@ -12,9 +12,6 @@ extension Decodable {
     
     init(data: Data) throws {
         let jsonDecoder = JSONDecoder()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        jsonDecoder.dateDecodingStrategy = .formatted(dateFormatter)
         self = try jsonDecoder.decode(Self.self, from: data)
     }
     
