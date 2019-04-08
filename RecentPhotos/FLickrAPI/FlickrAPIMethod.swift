@@ -11,5 +11,6 @@ import Foundation
 enum FlickrAPIMethod: String, Encodable {
     
     case recentPhotos = "flickr.photos.getRecent"
+    case personInfo = "flickr.people.getInfo"
     
 }

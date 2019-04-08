@@ -19,7 +19,7 @@ class FlickrPhoto: Decodable {
     var isFriend: Int?
     var isFamily: Int?
     var license: String?
-    var description: FlickrPhotoDescription?
+    var description: FlickrDescription?
     var dateUpload: String?
     var lastUpdate: String?
     var dateTaken: String?
@@ -132,18 +132,5 @@ class FlickrPhoto: Decodable {
         case heightO = "height_o"
         case widthO = "width_o"
     }
-    
-}
-
-class FlickrPhotoDescription: Decodable {
-    
-    var content: String?
-    
-    private enum CodingKeys: String, CodingKey {
-        
-        case content = "_content"
-        
-    }
-
     
 }

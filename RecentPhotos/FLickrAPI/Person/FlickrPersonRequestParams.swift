@@ -1,5 +1,5 @@
 //
-//  FlickrRecentPhotosRequestParams.swift
+//  FlickrPersonRequestParams.swift
 //  RecentPhotos
 //
 //  Created by Ulaş Sancak on 8.04.2019.
@@ -8,20 +8,26 @@
 
 import Foundation
 
-class FlickrRecentPhotosRequestParams: FlickrBaseParams {
+class FlickrPersonRequestParams: FlickrBaseParams {
     
-    var page = 0
+    let personID: String
+
+    init(personID: String) {
+        self.personID = personID
+        super.init()
+        self.method = .personInfo
+    }
     
     private enum CodingKeys: String, CodingKey {
         
-        case page = "page"
+        case personID = "user_id"
         
     }
     
     override func encode(to encoder: Encoder) throws {
         
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(page, forKey: CodingKeys.page)
+        try container.encodeIfPresent(personID, forKey: CodingKeys.personID)
         try super.encode(to: encoder)
         
     }

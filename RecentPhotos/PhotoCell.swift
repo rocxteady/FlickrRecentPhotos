@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import RxSwift
 
 class PhotoCell: UITableViewCell {
+    
+    var disposeBag = DisposeBag()
+    
+    var viewModel: PersonInfoViewModel!
     
     static let identifier = "PhotoCell"
 
@@ -18,5 +23,21 @@ class PhotoCell: UITableViewCell {
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var viewCountLabel: UILabel!
     @IBOutlet weak var createdDateLabel: UILabel!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.disposeBag = DisposeBag()
+    }
 
+    func load(photo: FlickrPhoto) {
+        self.viewModel = PersonInfoViewModel(personID: photo.owner!)
+        self.viewModel.image
+        .asObservable()
+            .subscribe(onNext: { [weak self] (image) in
+                self?.ownerPhotoImageView.image = image
+            })
+        .disposed(by: self.disposeBag)
+        viewModel.getPersonInfo()
+    }
+    
 }

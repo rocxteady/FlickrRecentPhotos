@@ -21,13 +21,15 @@ class RecentPhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.tableView.estimatedRowHeight = 134.0
+        self.tableView.rowHeight = UITableView.automaticDimension
         setupRx()
         getRecentPhotos()
     }
 
     private func setupRx() {
-        self.viewModel.photoList.asObservable().bind(to: self.tableView.rx.items(cellIdentifier: PhotoCell.identifier, cellType: PhotoCell.self)) { (row, model, cell) in
-            
+        self.viewModel.photoList.asObservable().bind(to: self.tableView.rx.items(cellIdentifier: PhotoCell.identifier, cellType: PhotoCell.self)) { (row, photo, cell) in
+            cell.load(photo: photo)
         }.disposed(by: self.disposeBag)
         self.viewModel.requestStartedSubject
             .asObservable()
@@ -47,6 +49,8 @@ class RecentPhotosViewController: UIViewController {
                 print(error)
             })
             .disposed(by: self.disposeBag)
+        self.tableView.rx.setDelegate(self)
+        .disposed(by: self.disposeBag)
     }
     
     private func getRecentPhotos() {
@@ -55,3 +59,11 @@ class RecentPhotosViewController: UIViewController {
 
 }
 
+extension RecentPhotosViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let cell = cell as! PhotoCell
+        cell.viewModel.stopGettingPersonInfo()
+    }
+    
+}

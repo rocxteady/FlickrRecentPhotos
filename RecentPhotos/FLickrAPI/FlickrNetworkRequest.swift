@@ -43,8 +43,8 @@ class FlickrNetworkRequest<T: Decodable>: NetworkRequestProtocol {
                 return Disposables.create()
             }
             self.currentRequest = Alamofire.request(fullURLString, method: self.httpMethod, parameters: params)
-            self.currentRequest?.responseData { response in
-                self.end()
+            self.currentRequest?.responseData { [weak self] response in
+                self?.end()
                 switch response.result {
                 case .success:
                     if let data = response.data {
