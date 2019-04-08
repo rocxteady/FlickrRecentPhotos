@@ -13,9 +13,11 @@ class RecentPhotosViewModel {
     
     var disposable: Disposable?
     
-    private(set) var currentPage = 0
+    private var currentPage = 0
     
-    private(set) var totalPageCount: Int?
+    private var totalPageCount: Int?
+    
+    private(set) var isFinished = false
     
     let photoList = Variable<[FlickrPhoto]>([FlickrPhoto]())
 
@@ -25,16 +27,25 @@ class RecentPhotosViewModel {
     
     let requestCompletedSubject = PublishSubject<Void>()
     
-    func getRecentPhotos() {
+    func getRecentPhotos(shouldReset: Bool = false) {
+        if shouldReset {
+            self.photoList.value = [FlickrPhoto]()
+        }
         let request = FlickrRecentPhotosRequest()
         let parameters = FlickrRecentPhotosRequestParams()
         parameters.page = self.currentPage + 1
         request.parameters = parameters
         self.requestStartedSubject.onNext(())
         self.disposable = request.start().subscribe(onNext: { [weak self] (response) in
-            self?.photoList.value = response.photos?.photoList ?? [FlickrPhoto]()
-            self?.currentPage = response.photos?.page ?? 0
-            self?.totalPageCount = response.photos?.pages
+            if let photoList = response.photos?.photoList {
+                self?.photoList.value.append(contentsOf: photoList)
+            }
+            if let page = response.photos?.page {
+                self?.currentPage = page
+            }
+            if let pages = response.photos?.pages {
+                self?.totalPageCount = pages
+            }
         }, onError: { [weak self] (error) in
             self?.errorReceivedSubject.onNext(error.localizedDescription)
             self?.disposable?.dispose()

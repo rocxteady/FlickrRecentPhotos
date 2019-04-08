@@ -73,6 +73,12 @@ class RecentPhotosViewController: UIViewController {
 
 extension RecentPhotosViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == self.viewModel.photoList.value.count - 1 {
+            getRecentPhotos()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let cell = cell as! PhotoCell
         cell.viewModel.stopGettingPersonInfo()
