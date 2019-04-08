@@ -68,7 +68,15 @@ class FlickrPhoto: Decodable {
     var urlO: String?
     var heightO: String?
     var widthO: String?
-    
+    var photoURL: String? {
+        get {
+            if let farm = self.farm, let server = self.server, let id = self.id, let secret = self.secret, farm > 0, server != "0" {
+                return FlickrImageURLHelper.createImageURLString(farm: farm, server: server, id: id, secret: secret)
+            }
+            return nil
+        }
+    }
+
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case owner = "owner"

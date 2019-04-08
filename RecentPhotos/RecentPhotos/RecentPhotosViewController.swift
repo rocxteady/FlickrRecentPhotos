@@ -56,6 +56,18 @@ class RecentPhotosViewController: UIViewController {
     private func getRecentPhotos() {
         self.viewModel.getRecentPhotos()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "photo" {
+            let button = sender as! UIButton
+            let point = button.convert(CGPoint.zero, to: self.tableView)
+            if let indexPath = self.tableView.indexPathForRow(at: point) {
+                let photoViewController = segue.destination as! PhotoViewController
+                let photo = self.viewModel.photoList.value[indexPath.row]
+                photoViewController.photoURLString = photo.photoURL
+            }
+        }
+    }
 
 }
 

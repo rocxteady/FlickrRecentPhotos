@@ -12,7 +12,7 @@ class FlickrRecentPhotosRequestParams: FlickrBaseParams {
     
     var page = 0
     
-    var extras = "views,date_taken,owner_name,url_o,height_o,width_o,url_s,height_s,width_s"
+    var extras = "views,date_taken,owner_name,url_s,height_s,width_s"
     
     private enum CodingKeys: String, CodingKey {
         

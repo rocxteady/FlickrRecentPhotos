@@ -20,6 +20,7 @@
 		7C323971225B71ED00841D93 /* FlickrImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C323970225B71ED00841D93 /* FlickrImageDownloader.swift */; };
 		7C323973225B850400841D93 /* FlickrImageURLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C323972225B850400841D93 /* FlickrImageURLHelper.swift */; };
 		7C323975225BADA600841D93 /* String+CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C323974225BADA600841D93 /* String+CGFloat.swift */; };
+		7C323978225BBE9600841D93 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C323977225BBE9600841D93 /* PhotoViewController.swift */; };
 		7CF392362258FB22009E143C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF392352258FB22009E143C /* AppDelegate.swift */; };
 		7CF392382258FB22009E143C /* RecentPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF392372258FB22009E143C /* RecentPhotosViewController.swift */; };
 		7CF3923B2258FB22009E143C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CF392392258FB22009E143C /* Main.storyboard */; };
@@ -77,6 +78,7 @@
 		7C323970225B71ED00841D93 /* FlickrImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrImageDownloader.swift; sourceTree = "<group>"; };
 		7C323972225B850400841D93 /* FlickrImageURLHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrImageURLHelper.swift; sourceTree = "<group>"; };
 		7C323974225BADA600841D93 /* String+CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CGFloat.swift"; sourceTree = "<group>"; };
+		7C323977225BBE9600841D93 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		7CF392322258FB22009E143C /* RecentPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecentPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF392352258FB22009E143C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CF392372258FB22009E143C /* RecentPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPhotosViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +186,17 @@
 			path = Person;
 			sourceTree = "<group>";
 		};
+		7C323976225BBBFF00841D93 /* RecentPhotos */ = {
+			isa = PBXGroup;
+			children = (
+				7C32395C225B42AD00841D93 /* RecentPhotosViewModel.swift */,
+				7CF392372258FB22009E143C /* RecentPhotosViewController.swift */,
+				7C32396E225B657600841D93 /* PersonInfoViewModel.swift */,
+				7C32395A225B404C00841D93 /* PhotoCell.swift */,
+			);
+			path = RecentPhotos;
+			sourceTree = "<group>";
+		};
 		7CF392292258FB22009E143C = {
 			isa = PBXGroup;
 			children = (
@@ -213,11 +226,9 @@
 				7CF3926A2259052C009E143C /* General */,
 				7CF39265225903A5009E143C /* FLickrAPI */,
 				7CF392352258FB22009E143C /* AppDelegate.swift */,
-				7C32395C225B42AD00841D93 /* RecentPhotosViewModel.swift */,
-				7CF392372258FB22009E143C /* RecentPhotosViewController.swift */,
-				7C32396E225B657600841D93 /* PersonInfoViewModel.swift */,
-				7C32395A225B404C00841D93 /* PhotoCell.swift */,
+				7C323976225BBBFF00841D93 /* RecentPhotos */,
 				7CF392392258FB22009E143C /* Main.storyboard */,
+				7C323977225BBE9600841D93 /* PhotoViewController.swift */,
 				7CF3923C2258FB23009E143C /* Assets.xcassets */,
 				7CF3923E2258FB23009E143C /* LaunchScreen.storyboard */,
 				7CF392412258FB23009E143C /* Info.plist */,
@@ -485,6 +496,7 @@
 				7C323963225B603000841D93 /* FlickrPerson.swift in Sources */,
 				7CF3927E22590EF4009E143C /* FlickrPhoto.swift in Sources */,
 				7CF392742259070C009E143C /* FlickrBaseParams.swift in Sources */,
+				7C323978225BBE9600841D93 /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
