@@ -1,5 +1,5 @@
 //
-//  RecentPhotosViewModel.swift
+//  PhotosViewModel.swift
 //  RecentPhotos
 //
 //  Created by Ulaş Sancak on 8.04.2019.
@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class RecentPhotosViewModel {
+class PhotosViewModel {
     
     var disposable: Disposable?
     
@@ -48,7 +48,7 @@ class RecentPhotosViewModel {
             self.isFinished = false
             self.photoList.value = [FlickrPhoto]()
         }
-        let request = FlickrRecentPhotosRequest()
+        let request = FlickrPhotosRequest()
         let parameters = FlickrPhotoSearchRequestParams()
         parameters.page = self.currentPage + 1
         request.parameters = parameters

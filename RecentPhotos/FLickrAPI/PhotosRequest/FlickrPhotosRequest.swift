@@ -1,5 +1,5 @@
 //
-//  FlickrRecentPhotosRequest.swift
+//  FlickrPhotosRequest.swift
 //  RecentPhotos
 //
 //  Created by Ulaş Sancak on 6.04.2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FlickrRecentPhotosRequest: FlickrNetworkRequest<FlickrPhotosResponse> {
+class FlickrPhotosRequest: FlickrNetworkRequest<FlickrPhotosResponse> {
     
     override init() {
         super.init()

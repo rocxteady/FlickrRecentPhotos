@@ -15,7 +15,21 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var closeButton: UIButton!
     
+    private var shouldStatusBarBeHidden = false
+    
     var photoURLString: String!
+    
+    override var prefersStatusBarHidden: Bool {
+        return self.shouldStatusBarBeHidden
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .fade
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +42,15 @@ class PhotoViewController: UIViewController {
         }
         else {
             self.photoImageView.image = UIImage(named: "image")
+        }
+        self.photoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImageViewTap)))
+    }
+    
+    @objc func handleImageViewTap() {
+        self.shouldStatusBarBeHidden = !self.shouldStatusBarBeHidden
+        UIView.animate(withDuration: 0.25) {
+            self.closeButton.alpha = self.shouldStatusBarBeHidden ? 0 : 1.0
+            self.setNeedsStatusBarAppearanceUpdate()
         }
     }
 

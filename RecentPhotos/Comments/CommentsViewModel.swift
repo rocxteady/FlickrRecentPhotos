@@ -1,5 +1,5 @@
 //
-//  RecentPhotosViewModel.swift
+//  CommentsViewModel.swift
 //  RecentPhotos
 //
 //  Created by Ulaş Sancak on 8.04.2019.

@@ -1,5 +1,5 @@
 //
-//  FlickrRecentPhotosRequest.swift
+//  FlickrCommentsRequest.swift
 //  RecentPhotos
 //
 //  Created by Ulaş Sancak on 6.04.2019.

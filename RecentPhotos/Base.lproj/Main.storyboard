@@ -119,7 +119,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kwG-Ij-7PF">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x2P-Hh-qiN">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x2P-Hh-qiN">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                     </imageView>
                                 </subviews>
@@ -193,7 +193,7 @@
         <!--Photos-->
         <scene sceneID="HSn-1U-Q3q">
             <objects>
-                <viewController id="dW5-0d-UIH" customClass="RecentPhotosViewController" customModule="RecentPhotos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dW5-0d-UIH" customClass="PhotosViewController" customModule="RecentPhotos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qkZ-sA-vD6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -241,6 +241,12 @@
                                                         <constraint firstAttribute="height" priority="999" constant="85" id="WaI-PN-eTc"/>
                                                         <constraint firstAttribute="width" priority="999" constant="85" id="ivN-hJ-kyi"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <segue destination="SkQ-HG-JDF" kind="presentation" identifier="photo" id="Cl5-VH-9kG">
+                                                            <segue key="commit" inheritsFrom="parent" id="2Bu-SY-UzA"/>
+                                                            <segue key="preview" inheritsFrom="commit" id="aBB-pP-HqP"/>
+                                                        </segue>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Views" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LM-bQ-Iq4">
                                                     <rect key="frame" x="20" y="198" width="38.5" height="17"/>
@@ -262,7 +268,10 @@
                                                     </constraints>
                                                     <state key="normal" image="comments"/>
                                                     <connections>
-                                                        <segue destination="BYZ-38-t0r" kind="show" identifier="comments" id="kAi-z6-Jas"/>
+                                                        <segue destination="BYZ-38-t0r" kind="show" identifier="comments" id="kAi-z6-Jas">
+                                                            <segue key="commit" inheritsFrom="parent" id="hzX-Ls-Ug7"/>
+                                                            <segue key="preview" inheritsFrom="commit" id="EaZ-aa-jj2"/>
+                                                        </segue>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -317,7 +326,6 @@
                     <navigationItem key="navigationItem" title="Photos" id="bnc-cE-rpb"/>
                     <connections>
                         <outlet property="tableView" destination="qiC-75-jCf" id="fJr-WE-Q0V"/>
-                        <segue destination="SkQ-HG-JDF" kind="presentation" identifier="photo" id="Nv5-ji-FG6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jJb-ng-en9" sceneMemberID="firstResponder"/>
@@ -329,4 +337,8 @@
         <image name="comments" width="25" height="25"/>
         <image name="profile" width="85" height="85"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Cl5-VH-9kG"/>
+        <segue reference="kAi-z6-Jas"/>
+    </inferredMetricsTieBreakers>
 </document>

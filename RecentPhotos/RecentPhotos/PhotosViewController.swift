@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PhotosViewController.swift
 //  RecentPhotos
 //
 //  Created by Ulaş Sancak on 6.04.2019.
@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class RecentPhotosViewController: UIViewController {
+class PhotosViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     private let searchBar = UISearchBar(frame: .zero)
@@ -19,7 +19,7 @@ class RecentPhotosViewController: UIViewController {
 
     let disposeBag = DisposeBag()
     
-    let viewModel = RecentPhotosViewModel()
+    let viewModel = PhotosViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,7 +112,7 @@ class RecentPhotosViewController: UIViewController {
 
 }
 
-extension RecentPhotosViewController: UITableViewDelegate {
+extension PhotosViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == self.viewModel.filteredPhotoList.value.count - 1 && !self.viewModel.isFinished && !self.viewModel.isBusy && !self.viewModel.isSearchActive {
@@ -122,7 +122,7 @@ extension RecentPhotosViewController: UITableViewDelegate {
     
 }
 
-extension RecentPhotosViewController {
+extension PhotosViewController {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.searchBar.resignFirstResponder()
@@ -130,7 +130,7 @@ extension RecentPhotosViewController {
     
 }
 
-extension RecentPhotosViewController {
+extension PhotosViewController {
     
     func handleError(error: String) {
         let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error, preferredStyle: .alert)
