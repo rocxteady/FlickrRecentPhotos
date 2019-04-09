@@ -18,6 +18,10 @@ class FlickrImageURLHelper {
         return "https://farm\(farm).staticflickr.com/" + server + "/" + id + "_" + secret + "_b.jpg"
     }
     
+    class func createSmallImageURLString(farm: Int, server: String, id: String, secret: String) -> String {
+        return "https://farm\(farm).staticflickr.com/" + server + "/" + id + "_" + secret + "_m.jpg"
+    }
+    
 }
 
 

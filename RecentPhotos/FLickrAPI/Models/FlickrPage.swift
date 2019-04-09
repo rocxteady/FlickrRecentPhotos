@@ -16,7 +16,7 @@ class FlickrPage: Decodable {
     
     var perPage = 100
     
-    var total = 1000
+    var total = "1000"
     
     private enum CodingKeys: String, CodingKey {
      

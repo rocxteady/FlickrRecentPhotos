@@ -13,6 +13,9 @@ import RxSwift
 class RecentPhotosViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    private let searchBar = UISearchBar(frame: .zero)
+
+    private var activityIndicator: UIActivityIndicatorView!
 
     let disposeBag = DisposeBag()
     
@@ -21,6 +24,13 @@ class RecentPhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.searchBar.showsCancelButton = true
+        self.navigationItem.titleView = self.searchBar
+        self.activityIndicator = UIActivityIndicatorView(style: .gray)
+        self.activityIndicator.hidesWhenStopped = true
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: self.activityIndicator)
+        self.tableView.refreshControl = UIRefreshControl(frame: CGRect.zero)
+        self.tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.tableView.estimatedRowHeight = 135.0
         self.tableView.rowHeight = UITableView.automaticDimension
         setupRx()
@@ -28,43 +38,74 @@ class RecentPhotosViewController: UIViewController {
     }
 
     private func setupRx() {
-        self.viewModel.photoList.asObservable().bind(to: self.tableView.rx.items(cellIdentifier: PhotoCell.identifier, cellType: PhotoCell.self)) { (row, photo, cell) in
+        self.viewModel.filteredPhotoList.asObservable().bind(to: self.tableView.rx.items(cellIdentifier: PhotoCell.identifier, cellType: PhotoCell.self)) { (row, photo, cell) in
             cell.load(photo: photo)
         }.disposed(by: self.disposeBag)
         self.viewModel.requestStartedSubject
             .asObservable()
             .subscribe(onNext: { () in
-                print("Started")
+                self.activityIndicator.startAnimating()
             })
         .disposed(by: self.disposeBag)
         self.viewModel.requestCompletedSubject
             .asObservable()
-            .subscribe(onNext: { () in
-                print("Completed")
+            .subscribe(onNext: { [weak self] () in
+                self?.activityIndicator.stopAnimating()
+                self?.tableView.refreshControl?.endRefreshing()
             })
             .disposed(by: self.disposeBag)
         self.viewModel.errorReceivedSubject
             .asObservable()
-            .subscribe(onNext: { (error) in
-                print(error)
+            .subscribe(onNext: { [weak self] (error) in
+                self?.activityIndicator.stopAnimating()
+                self?.tableView.refreshControl?.endRefreshing()
+                self?.handleError(error: error)
             })
             .disposed(by: self.disposeBag)
         self.tableView.rx.setDelegate(self)
         .disposed(by: self.disposeBag)
+        
+        self.searchBar.rx.text.orEmpty
+            .debounce(0.5, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { (term) in
+                self.viewModel.search(tag: term)
+            })
+            .disposed(by: self.disposeBag)
+
+        self.searchBar.rx.cancelButtonClicked
+            .subscribe(onNext: { () in
+                self.viewModel.isSearchActive = false
+                self.searchBar.text = nil
+                self.searchBar.resignFirstResponder()
+            }).disposed(by: self.disposeBag)
+        
     }
     
-    private func getRecentPhotos() {
-        self.viewModel.getRecentPhotos()
+    @objc private func refresh() {
+        getRecentPhotos(shouldReset: true)
     }
     
+    private func getRecentPhotos(shouldReset: Bool = false) {
+        self.viewModel.getRecentPhotos(shouldReset: shouldReset)
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "photo" {
             let button = sender as! UIButton
             let point = button.convert(CGPoint.zero, to: self.tableView)
             if let indexPath = self.tableView.indexPathForRow(at: point) {
                 let photoViewController = segue.destination as! PhotoViewController
-                let photo = self.viewModel.photoList.value[indexPath.row]
+                let photo = self.viewModel.filteredPhotoList.value[indexPath.row]
                 photoViewController.photoURLString = photo.photoURL
+            }
+        }
+        else if segue.identifier == "comments" {
+            let button = sender as! UIButton
+            let point = button.convert(CGPoint.zero, to: self.tableView)
+            if let indexPath = self.tableView.indexPathForRow(at: point) {
+                let commentsViewController = segue.destination as! CommentsViewController
+                let photo = self.viewModel.filteredPhotoList.value[indexPath.row]
+                commentsViewController.photoID = photo.id
             }
         }
     }
@@ -74,14 +115,29 @@ class RecentPhotosViewController: UIViewController {
 extension RecentPhotosViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == self.viewModel.photoList.value.count - 1 {
+        if indexPath.row == self.viewModel.filteredPhotoList.value.count - 1 && !self.viewModel.isFinished && !self.viewModel.isBusy && !self.viewModel.isSearchActive {
             getRecentPhotos()
         }
     }
     
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let cell = cell as! PhotoCell
-        cell.viewModel.stopGettingPersonInfo()
+}
+
+extension RecentPhotosViewController {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.searchBar.resignFirstResponder()
+    }
+    
+}
+
+extension RecentPhotosViewController {
+    
+    func handleError(error: String) {
+        let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { (action) in
+            self.getRecentPhotos()
+        }))
     }
     
 }

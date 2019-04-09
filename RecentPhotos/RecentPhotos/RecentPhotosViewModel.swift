@@ -15,11 +15,25 @@ class RecentPhotosViewModel {
     
     private var currentPage = 0
     
-    private var totalPageCount: Int?
+    private var totalPageCount: Int? {
+        didSet {
+            if let totalPageCount = self.totalPageCount, totalPageCount == currentPage {
+                self.isFinished = true
+            }
+        }
+    }
     
     private(set) var isFinished = false
     
-    let photoList = Variable<[FlickrPhoto]>([FlickrPhoto]())
+    private(set) var isBusy = false
+    
+    var isSearchActive = false
+    
+    var searchTag: String?
+    
+    private let photoList = Variable<[FlickrPhoto]>([FlickrPhoto]())
+    
+    let filteredPhotoList = Variable<[FlickrPhoto]>([FlickrPhoto]())
 
     let requestStartedSubject = PublishSubject<Void>()
     
@@ -29,30 +43,64 @@ class RecentPhotosViewModel {
     
     func getRecentPhotos(shouldReset: Bool = false) {
         if shouldReset {
+            self.currentPage = 0
+            self.totalPageCount = nil
+            self.isFinished = false
             self.photoList.value = [FlickrPhoto]()
         }
         let request = FlickrRecentPhotosRequest()
-        let parameters = FlickrRecentPhotosRequestParams()
+        let parameters = FlickrPhotoSearchRequestParams()
         parameters.page = self.currentPage + 1
         request.parameters = parameters
         self.requestStartedSubject.onNext(())
+        self.isBusy = true
         self.disposable = request.start().subscribe(onNext: { [weak self] (response) in
-            if let photoList = response.photos?.photoList {
-                self?.photoList.value.append(contentsOf: photoList)
+            if let strongSelf = self, let photoList = response.photos?.photoList {
+                strongSelf.photoList.value.append(contentsOf: photoList)
+                strongSelf.search(tag: strongSelf.searchTag)
             }
-            if let page = response.photos?.page {
-                self?.currentPage = page
+            if let strongSelf = self, let page = response.photos?.page {
+                strongSelf.currentPage = page
             }
-            if let pages = response.photos?.pages {
-                self?.totalPageCount = pages
+            if let strongSelf = self, let pages = response.photos?.pages {
+                strongSelf.totalPageCount = pages
+            }
+            if let strongSelf = self {
+                strongSelf.isBusy = false
+                strongSelf.requestCompletedSubject.onNext(())
+                strongSelf.disposable?.dispose()
             }
         }, onError: { [weak self] (error) in
-            self?.errorReceivedSubject.onNext(error.localizedDescription)
-            self?.disposable?.dispose()
-        }, onCompleted: { [weak self] in
-            self?.requestCompletedSubject.onNext(())
-            self?.disposable?.dispose()
+            if let strongSelf = self {
+                strongSelf.isBusy = false
+                strongSelf.errorReceivedSubject.onNext(error.localizedDescription)
+                strongSelf.disposable?.dispose()
+            }
         })
+    }
+    
+    func search(tag: String?) {
+        self.searchTag = tag
+        self.isSearchActive = true
+        if let tag = tag, tag.count > 0 {
+            DispatchQueue.global().async {
+                let searchResult = self.photoList.value.filter({ (photo) -> Bool in
+                    if let tags = photo.tagArray {
+                        return tags.contains(where: { (tagInArray) -> Bool in
+                            return tagInArray.lowercased(with: Locale.current).hasPrefix(tag.lowercased(with: Locale.current))
+                        })
+                    }
+                    return false
+                })
+                DispatchQueue.main.async(execute: {
+                    self.filteredPhotoList.value = searchResult
+                })
+            } 
+        }
+        else {
+            self.isSearchActive = false
+            self.filteredPhotoList.value = self.photoList.value
+        }
     }
     
 }

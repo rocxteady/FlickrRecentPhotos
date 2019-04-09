@@ -12,9 +12,9 @@ class FlickrRecentPhotosRequestParams: FlickrBaseParams {
     
     var page = 0
     
-    var perPage = 20
+    var perPage = 50
     
-    var extras = "views,date_taken,owner_name,url_s,height_s,width_s"
+    var extras = "icon_server,tags,views,date_taken,owner_name,url_s,height_s,width_s"
     
     private enum CodingKeys: String, CodingKey {
         

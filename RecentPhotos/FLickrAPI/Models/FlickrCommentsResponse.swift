@@ -1,5 +1,5 @@
 //
-//  FlickrPersonResponse.swift
+//  FlickrCommentsResponse.swift
 //  RecentPhotos
 //
 //  Created by Ulaş Sancak on 6.04.2019.
@@ -8,19 +8,19 @@
 
 import Foundation
 
-class FlickrPersonResponse: FlickrBaseResponse {
+class FlickrCommentsResponse: FlickrBaseResponse {
     
-    var person: FlickrPerson?
+    var comments: FlickrComments?
     
     private enum CodingKeys: String, CodingKey {
         
-        case person = "person"
+        case comments = "comments"
         
     }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        person = try container.decodeIfPresent(FlickrPerson.self, forKey: CodingKeys.person)
+        comments = try container.decodeIfPresent(FlickrComments.self, forKey: CodingKeys.comments)
         try super.init(from: decoder)
     }
     
