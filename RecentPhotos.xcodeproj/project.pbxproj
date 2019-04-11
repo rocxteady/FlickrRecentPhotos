@@ -44,6 +44,7 @@
 		7CF3927E22590EF4009E143C /* FlickrPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF3927D22590EF4009E143C /* FlickrPhoto.swift */; };
 		7CF3928022591189009E143C /* FlickrPhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF3927F22591189009E143C /* FlickrPhotosResponse.swift */; };
 		E6F0EC5C798221F3B933B025 /* Pods_RecentPhotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95ABD64AAF7F3A1FE63B475 /* Pods_RecentPhotos.framework */; };
+		EC17F434A5BC6AAAC57B6949 /* Pods_RecentPhotosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE01967C97D3B31B815BBD3E /* Pods_RecentPhotosTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 /* Begin PBXFileReference section */
 		2D7F2E47E9A8977C47214501 /* Pods-RecentPhotos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecentPhotos.debug.xcconfig"; path = "Target Support Files/Pods-RecentPhotos/Pods-RecentPhotos.debug.xcconfig"; sourceTree = "<group>"; };
 		49A1A9CFE6F0BABA6D40E5AC /* Pods-RecentPhotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecentPhotos.release.xcconfig"; path = "Target Support Files/Pods-RecentPhotos/Pods-RecentPhotos.release.xcconfig"; sourceTree = "<group>"; };
+		543343ADC981BEC94520B79E /* Pods-RecentPhotosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecentPhotosTests.release.xcconfig"; path = "Target Support Files/Pods-RecentPhotosTests/Pods-RecentPhotosTests.release.xcconfig"; sourceTree = "<group>"; };
+		759A5F821E0C5EFB6D24BFF9 /* Pods-RecentPhotosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecentPhotosTests.debug.xcconfig"; path = "Target Support Files/Pods-RecentPhotosTests/Pods-RecentPhotosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7C32395A225B404C00841D93 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		7C32395C225B42AD00841D93 /* PhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModel.swift; sourceTree = "<group>"; };
 		7C32395E225B599A00841D93 /* FlickrRecentPhotosRequestParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrRecentPhotosRequestParams.swift; sourceTree = "<group>"; };
@@ -109,6 +112,7 @@
 		7CF3927D22590EF4009E143C /* FlickrPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrPhoto.swift; sourceTree = "<group>"; };
 		7CF3927F22591189009E143C /* FlickrPhotosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrPhotosResponse.swift; sourceTree = "<group>"; };
 		C95ABD64AAF7F3A1FE63B475 /* Pods_RecentPhotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecentPhotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE01967C97D3B31B815BBD3E /* Pods_RecentPhotosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecentPhotosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC17F434A5BC6AAAC57B6949 /* Pods_RecentPhotosTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +147,8 @@
 			children = (
 				2D7F2E47E9A8977C47214501 /* Pods-RecentPhotos.debug.xcconfig */,
 				49A1A9CFE6F0BABA6D40E5AC /* Pods-RecentPhotos.release.xcconfig */,
+				759A5F821E0C5EFB6D24BFF9 /* Pods-RecentPhotosTests.debug.xcconfig */,
+				543343ADC981BEC94520B79E /* Pods-RecentPhotosTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -150,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				C95ABD64AAF7F3A1FE63B475 /* Pods_RecentPhotos.framework */,
+				CE01967C97D3B31B815BBD3E /* Pods_RecentPhotosTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -326,9 +334,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7CF3925D2258FB23009E143C /* Build configuration list for PBXNativeTarget "RecentPhotosTests" */;
 			buildPhases = (
+				BA306ABB028AF64AD1E03474 /* [CP] Check Pods Manifest.lock */,
 				7CF392422258FB23009E143C /* Sources */,
 				7CF392432258FB23009E143C /* Frameworks */,
 				7CF392442258FB23009E143C /* Resources */,
+				9FD97FAF9275518C894BD413 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -455,6 +465,56 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecentPhotos/Pods-RecentPhotos-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FD97FAF9275518C894BD413 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RecentPhotosTests/Pods-RecentPhotosTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecentPhotosTests/Pods-RecentPhotosTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA306ABB028AF64AD1E03474 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RecentPhotosTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DCADE10628A3AAEEDA0BE435 /* [CP] Check Pods Manifest.lock */ = {
@@ -727,8 +787,9 @@
 		};
 		7CF3925E2258FB23009E143C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 759A5F821E0C5EFB6D24BFF9 /* Pods-RecentPhotosTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3U82SFTT2K;
@@ -748,8 +809,9 @@
 		};
 		7CF3925F2258FB23009E143C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 543343ADC981BEC94520B79E /* Pods-RecentPhotosTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3U82SFTT2K;
