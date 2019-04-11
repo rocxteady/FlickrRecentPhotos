@@ -13,10 +13,10 @@ class CommentCell: UITableViewCell {
     
     static let identifier = "CommentCell"
 
-    @IBOutlet weak var ownerNameLabel: UILabel!
-    @IBOutlet weak var ownerPhotoImageView: UIImageView!
-    @IBOutlet weak var commentLabel: UILabel!
-    @IBOutlet weak var createdDateLabel: UILabel!
+    @IBOutlet private weak var ownerNameLabel: UILabel!
+    @IBOutlet private weak var ownerPhotoImageView: UIImageView!
+    @IBOutlet private weak var commentLabel: UILabel!
+    @IBOutlet private weak var createdDateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

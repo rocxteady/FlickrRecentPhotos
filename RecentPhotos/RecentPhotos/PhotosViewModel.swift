@@ -11,7 +11,8 @@ import RxSwift
 
 class PhotosViewModel {
     
-    var disposable: Disposable?
+    //MARK: Private Properties
+    private var disposable: Disposable?
     
     private var currentPage = 0
     
@@ -27,11 +28,12 @@ class PhotosViewModel {
     
     private(set) var isBusy = false
     
-    var isSearchActive = false
-    
-    var searchTag: String?
+    private var searchTag: String?
     
     private let photoList = Variable<[FlickrPhoto]>([FlickrPhoto]())
+
+    //MARK: Public Properties
+    var isSearchActive = false
     
     let filteredPhotoList = Variable<[FlickrPhoto]>([FlickrPhoto]())
 

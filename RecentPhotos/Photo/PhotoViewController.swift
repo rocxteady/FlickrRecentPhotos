@@ -11,12 +11,14 @@ import Kingfisher
 
 class PhotoViewController: UIViewController {
 
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var closeButton: UIButton!
+    //Private properties
+    @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var photoImageView: UIImageView!
+    @IBOutlet private weak var closeButton: UIButton!
     
     private var shouldStatusBarBeHidden = false
     
+    //Public properties
     var photoURLString: String!
     
     override var prefersStatusBarHidden: Bool {
@@ -46,7 +48,7 @@ class PhotoViewController: UIViewController {
         self.photoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImageViewTap)))
     }
     
-    @objc func handleImageViewTap() {
+    @objc private func handleImageViewTap() {
         self.shouldStatusBarBeHidden = !self.shouldStatusBarBeHidden
         UIView.animate(withDuration: 0.25) {
             self.closeButton.alpha = self.shouldStatusBarBeHidden ? 0 : 1.0
@@ -54,11 +56,12 @@ class PhotoViewController: UIViewController {
         }
     }
 
-    @IBAction func dismiss(_ sender: Any) {
+    @IBAction private func dismiss(_ sender: Any) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
 
+//MARK: UIScrollView Delegate
 extension PhotoViewController: UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {

@@ -11,8 +11,12 @@ import RxSwift
 
 class CommentsViewModel {
     
-    var disposable: Disposable?
+    //Private properties
+    private let disposeBag = DisposeBag()
     
+    private let photoID: String
+    
+    //Public properties
     let commentList = Variable<[FlickrComment]>([FlickrComment]())
 
     let requestStartedSubject = PublishSubject<Void>()
@@ -20,8 +24,6 @@ class CommentsViewModel {
     let errorReceivedSubject = PublishSubject<String>()
     
     let requestCompletedSubject = PublishSubject<Void>()
-    
-    let photoID: String
     
     init(photoID: String) {
         self.photoID = photoID
@@ -35,19 +37,18 @@ class CommentsViewModel {
         let parameters = FlickrCommentsRequestParams(photoID: photoID)
         request.parameters = parameters
         self.requestStartedSubject.onNext(())
-        self.disposable = request.start().subscribe(onNext: { [weak self] (response) in
+        request.start().subscribe(onNext: { [weak self] (response) in
             if let strongSelf = self, let commentList = response.comments?.commentList {
                 strongSelf.commentList.value = commentList
             }
             if let strongSelf = self {
                 strongSelf.requestCompletedSubject.onNext(())
-                strongSelf.disposable?.dispose()
             }
         }, onError: { [weak self] (error) in
             if let strongSelf = self {                strongSelf.errorReceivedSubject.onNext(error.localizedDescription)
-                strongSelf.disposable?.dispose()
             }
         })
+        .disposed(by: self.disposeBag)
     }
     
 }

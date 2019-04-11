@@ -11,6 +11,7 @@ import RxSwift
 
 class CommentsViewController: UIViewController {
     
+    //Private properties
     @IBOutlet private weak var tableView: UITableView!
     
     private var activityIndicator: UIActivityIndicatorView!
@@ -19,6 +20,7 @@ class CommentsViewController: UIViewController {
     
     private var viewModel: CommentsViewModel!
     
+    //Public properties
     var photoID: String!
     
     override func viewDidLoad() {
@@ -37,9 +39,12 @@ class CommentsViewController: UIViewController {
     }
     
     private func setupRx() {
+        //Data
         self.viewModel.commentList.asObservable().bind(to: self.tableView.rx.items(cellIdentifier: PhotoCell.identifier, cellType: CommentCell.self)) { (row, comment, cell) in
             cell.load(comment: comment)
             }.disposed(by: self.disposeBag)
+        
+        //Callbacks
         self.viewModel.requestStartedSubject
             .asObservable()
             .subscribe(onNext: { () in
@@ -74,6 +79,8 @@ class CommentsViewController: UIViewController {
     
 }
 
+
+//MARK: Error Handling
 extension CommentsViewController {
     
     func handleError(error: String) {

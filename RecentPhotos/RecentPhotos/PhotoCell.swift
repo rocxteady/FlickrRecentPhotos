@@ -14,15 +14,15 @@ class PhotoCell: UITableViewCell {
     
     static let identifier = "PhotoCell"
 
-    @IBOutlet weak var ownerNameLabel: UILabel!
-    @IBOutlet weak var ownerPhotoImageView: UIImageView!
-    @IBOutlet weak var photoTitleLabel: UILabel!
-    @IBOutlet weak var photoButton: UIButton!
-    @IBOutlet weak var photoButtonHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var photoButtonWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var viewCountLabel: UILabel!
-    @IBOutlet weak var createdDateLabel: UILabel!
-    @IBOutlet weak var commentsButton: UIButton!
+    @IBOutlet private weak var ownerNameLabel: UILabel!
+    @IBOutlet private weak var ownerPhotoImageView: UIImageView!
+    @IBOutlet private weak var photoTitleLabel: UILabel!
+    @IBOutlet private weak var photoButton: UIButton!
+    @IBOutlet private weak var photoButtonHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var photoButtonWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var viewCountLabel: UILabel!
+    @IBOutlet private weak var createdDateLabel: UILabel!
+    @IBOutlet private weak var commentsButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

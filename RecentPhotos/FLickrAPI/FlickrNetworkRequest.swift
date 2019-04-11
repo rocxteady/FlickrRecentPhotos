@@ -20,15 +20,13 @@ protocol NetworkRequestProtocol {
 
 //T for response object model
 //P for parameters object model
-class FlickrNetworkRequest<T: Decodable>: NetworkRequestProtocol {
+class FlickrNetworkRequest<T: FlickrBaseResponse>: NetworkRequestProtocol {
     
     var httpMethod: HTTPMethod = .get
     
     var parameters: FlickrBaseParams = FlickrBaseParams()
     
     var currentRequest: DataRequest?
-    
-    private(set) var currentTask: URLSessionTask?
     
     func start() -> Observable<T> {
         return Observable<T>.create({ (observer) -> Disposable in
@@ -50,8 +48,13 @@ class FlickrNetworkRequest<T: Decodable>: NetworkRequestProtocol {
                     if let data = response.data {
                         do {
                             let t = try T(data: data)
-                            observer.onNext(t)
-                            observer.onCompleted()
+                            switch t.stat {
+                            case .ok:
+                                observer.onNext(t)
+                                observer.onCompleted()
+                            case .fail:
+                                observer.onError(ErrorHelper.crateError(type: .noData))
+                            }
                         } catch let error {
                             observer.onError(error)
                         }
@@ -65,11 +68,13 @@ class FlickrNetworkRequest<T: Decodable>: NetworkRequestProtocol {
                     observer.onError(error)
                 }
             }
-            return Disposables.create()
+            return Disposables.create(with: { [weak self] in
+                self?.end()
+            })
         })
     }
     
-    func end() {
+    private func end() {
         if let currentRequest = self.currentRequest, let currentTask = currentRequest.task {
             if currentTask.state == .running || currentTask.state == .suspended {
                 currentTask.cancel()

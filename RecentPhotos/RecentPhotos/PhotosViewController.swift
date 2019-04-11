@@ -12,14 +12,13 @@ import RxSwift
 
 class PhotosViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     private let searchBar = UISearchBar(frame: .zero)
-
     private var activityIndicator: UIActivityIndicatorView!
 
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
-    let viewModel = PhotosViewModel()
+    private let viewModel = PhotosViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +37,12 @@ class PhotosViewController: UIViewController {
     }
 
     private func setupRx() {
+        //Data
         self.viewModel.filteredPhotoList.asObservable().bind(to: self.tableView.rx.items(cellIdentifier: PhotoCell.identifier, cellType: PhotoCell.self)) { (row, photo, cell) in
             cell.load(photo: photo)
         }.disposed(by: self.disposeBag)
+        
+        //Callbacks
         self.viewModel.requestStartedSubject
             .asObservable()
             .subscribe(onNext: { () in
@@ -62,9 +64,12 @@ class PhotosViewController: UIViewController {
                 self?.handleError(error: error)
             })
             .disposed(by: self.disposeBag)
+        
+        //UITableview Delegate
         self.tableView.rx.setDelegate(self)
         .disposed(by: self.disposeBag)
         
+        //Search
         self.searchBar.rx.text.orEmpty
             .debounce(0.5, scheduler: MainScheduler.instance)
             .subscribe(onNext: { (term) in
@@ -112,6 +117,7 @@ class PhotosViewController: UIViewController {
 
 }
 
+//MARK: UITableView Delegate
 extension PhotosViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -122,6 +128,7 @@ extension PhotosViewController: UITableViewDelegate {
     
 }
 
+//MARK: UIScrollView Delegate
 extension PhotosViewController {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -130,6 +137,7 @@ extension PhotosViewController {
     
 }
 
+//MARK: Error Handling
 extension PhotosViewController {
     
     func handleError(error: String) {
